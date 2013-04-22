@@ -9,28 +9,134 @@ Template: twentytwelve
 */
 @import 'twentytwelvecopy';
 
-$rembase:     14;
-$line-height: 24;
+@mixin breakpoint($point) {
+	@if $point == large {
+		@media screen
+			and (min-width: 960px) 
+			{ @content; }
+	}
+	@else if $point == medium {
+		@media screen
+			and (min-width: 600px) 
+			{ @content; }
+	}
+}
 
+@mixin no-hyphens {
+   word-wrap: normal;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+   hyphens: none;
+}
+
+@mixin box-shadow($x,$y,$blur,$color){
+	-webkit-box-shadow: $x $y $blur $color;
+}
+
+$rembase:     14;
+$line_height: 24;
+
+$site_width: 960px;
 
 body{
 	background-color: #fff;
 
 	.site{
-		margin-top: 0;
+		margin: 0 auto;
+		width: 100%;
+		max-width: none;
+		padding:0;
 		box-shadow: none;
-		border:1px solid black;
+		border-top: none;
+		background: transparent url('./i/white_paper.jpg') repeat center top;
 	}
 }
 
 .site-header{
+	background-color: transparent;
+	background-image: url('./i/bg_texture.png');
+	background-repeat: repeat;
+	background-position: center top;
+	@include box-shadow(0, 2px, 2px, #5f4125);
+	
 	h1{
-		font-size: 130px;
+		font-size: 52px;
+		font-size: 52rem / $rembase;
+		line-height: 1em;
 		font-family: 'Nothing You Could Do', cursive;
+		width: 100%;
+		text-align: center;
+		margin-top: -0.1em;
+		
+		a, a:hover{
+			display: block;
+			width: 100%;
+			color: #000;
+			color: rgba(0,0,0,0.4);
+			text-shadow: 0 0 2px #000;
+			text-shadow: 0 0 2px rgba(0,0,0,0.4);
+			
+			&:before, &:after{
+				content:'*';
+			}
+		}
 	}
+	
+	h2{
+		font-family: 'Nothing You Could Do', cursive;
+		color:#000;
+		font-size: 24px;
+		font-size: 24rem / $rembase;
+		text-align: center;
+	}
+	
+	nav{
+		.nav-menu{
+			
+			@include breakpoint(medium){
+				border: 1px solid #b33 {
+					left:none;
+					right:none;
+					bottom-color: #700;
+				}
+				background:#911 url('./i/canvas_texture.png') repeat center top;
+				@include box-shadow(0,1px,1px,#500)
+			}
+			
+			ul{
+				border: none;
+				max-width: $site_width;
+				margin:0 auto;
+				padding: 0 1em;
+			}
+			
+			a{
+				color:#ddd;
+				
+				&:hover{
+					color: #fff;
+				}
+			}
+		}
+	}
+}
+
+#main{
+	padding:1em;
+	max-width: $site_width;
+	margin: auto;
+}
+
+.entry-title{
+		font-family: 'Nothing You Could Do', cursive;
 }
 
 // Always display author names. Even when it's just one.
 .single-author .entry-meta .by-author {
 	display: inline;
+}
+
+// Remove hyphens in articles. Ugh.
+.site-content article{
+	@include no-hyphens;
 }

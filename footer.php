@@ -14,6 +14,7 @@
 	<footer id="colophon" role="contentinfo">
 		<div class="site-info">
 			<?php do_action( 'twentytwelve_credits' ); ?>
+			<a href="http://happycollision.com" title="Web Design and Development">This site is the result of a Happy Collision.</a>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

@@ -1675,13 +1675,74 @@ img#wpstats {
 body {
   background-color: #fff; }
   body .site {
-    margin-top: 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    padding: 0;
     box-shadow: none;
-    border: 1px solid black; }
+    border-top: none;
+    background: transparent url("./i/white_paper.jpg") repeat center top; }
 
-.site-header h1 {
-  font-size: 130px;
+.site-header {
+  background-color: transparent;
+  background-image: url("./i/bg_texture.png");
+  background-repeat: repeat;
+  background-position: center top;
+  -webkit-box-shadow: 0 2px 2px #5f4125; }
+  .site-header h1 {
+    font-size: 52px;
+    font-size: 3.71429rem;
+    line-height: 1em;
+    font-family: 'Nothing You Could Do', cursive;
+    width: 100%;
+    text-align: center;
+    margin-top: -0.1em; }
+    .site-header h1 a, .site-header h1 a:hover {
+      display: block;
+      width: 100%;
+      color: #000;
+      color: rgba(0, 0, 0, 0.4);
+      text-shadow: 0 0 2px #000;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.4); }
+      .site-header h1 a:before, .site-header h1 a:after, .site-header h1 a:hover:before, .site-header h1 a:hover:after {
+        content: '*'; }
+  .site-header h2 {
+    font-family: 'Nothing You Could Do', cursive;
+    color: #000;
+    font-size: 24px;
+    font-size: 1.71429rem;
+    text-align: center; }
+  @media screen and (min-width: 600px) {
+    .site-header nav .nav-menu {
+      border: 1px solid #bb3333;
+        border-left: none;
+        border-right: none;
+        border-bottom-color: #700;
+      background: #991111 url("./i/canvas_texture.png") repeat center top;
+      -webkit-box-shadow: 0 1px 1px #550000; } }
+  .site-header nav .nav-menu ul {
+    border: none;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1em; }
+  .site-header nav .nav-menu a {
+    color: #ddd; }
+    .site-header nav .nav-menu a:hover {
+      color: #fff; }
+
+#main {
+  padding: 1em;
+  max-width: 960px;
+  margin: auto; }
+
+.entry-title {
   font-family: 'Nothing You Could Do', cursive; }
 
 .single-author .entry-meta .by-author {
   display: inline; }
+
+.site-content article {
+  word-wrap: normal;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  hyphens: none; }
