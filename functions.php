@@ -40,3 +40,16 @@ function happycol_change_excerpt_name( $translated_text, $text, $domain ) {
 
     return $translated_text;
 }
+
+wp_enqueue_script(
+	'fittext',
+	get_stylesheet_directory_uri() . '/js/fittext/jquery.fittext.js',
+	array( 'jquery' ),
+	true
+);
+wp_enqueue_script(
+	'footer-js',
+	get_stylesheet_directory_uri() . '/js/footer.js',
+	array( 'fittext' ),
+	true
+);
