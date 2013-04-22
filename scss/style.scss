@@ -1,0 +1,36 @@
+/*!
+Theme Name: Actor Notes
+Author: Happy Collision
+Author URI: http://happycollision.com
+Description: Child theme for ActorNotes.com
+Version: 1.0
+Template: twentytwelve
+
+*/
+@import 'twentytwelvecopy';
+
+$rembase:     14;
+$line-height: 24;
+
+
+body{
+	background-color: #fff;
+
+	.site{
+		margin-top: 0;
+		box-shadow: none;
+		border:1px solid black;
+	}
+}
+
+.site-header{
+	h1{
+		font-size: 130px;
+		font-family: 'Nothing You Could Do', cursive;
+	}
+}
+
+// Always display author names. Even when it's just one.
+.single-author .entry-meta .by-author {
+	display: inline;
+}
