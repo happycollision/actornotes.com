@@ -3,7 +3,7 @@ Theme Name: Actor Notes
 Author: Happy Collision
 Author URI: http://happycollision.com
 Description: Child theme for ActorNotes.com
-Version: 1.0
+Version: 0.2
 Template: twentytwelve
 
 */
@@ -1732,8 +1732,12 @@ body {
   font-size: 24px;
   font-size: 1.71429rem;
   text-align: center; }
+  @media screen and (max-width: 599px) {
+    .site-header hgroup h2 {
+      font-size: 18px;
+      font-size: 1.28571rem; } }
 @media screen and (min-width: 600px) {
-  .site-header nav .nav-menu {
+  .site-header nav.main-navigation div {
     border: 1px solid #bb3333;
       border-left: none;
       border-right: none;
@@ -1744,14 +1748,14 @@ body {
     -o-box-shadow: 0 1px 1px #550000;
     -ms-box-shadow: 0 1px 1px #550000;
     box-shadow: 0 1px 1px #550000; } }
-.site-header nav .nav-menu ul {
+.site-header nav.main-navigation div ul {
   border: none;
   max-width: 960px;
   margin: 0 auto;
   padding: 0 1em; }
-.site-header nav .nav-menu a {
+.site-header nav.main-navigation div a {
   color: #ddd; }
-  .site-header nav .nav-menu a:hover {
+  .site-header nav.main-navigation div a:hover {
     color: #fff; }
 
 #main {
@@ -1763,10 +1767,18 @@ body {
   font-family: 'Nothing You Could Do', cursive;
   font-size: 32px;
   font-size: 2.28571rem; }
+  @media screen and (max-width: 599px) {
+    .entry-header .entry-title {
+      font-size: 24px;
+      font-size: 1.71429rem; } }
 
 .page .entry-header .entry-title {
   font-size: 52px;
   font-size: 3.71429rem; }
+  @media screen and (max-width: 599px) {
+    .page .entry-header .entry-title {
+      font-size: 32px;
+      font-size: 2.28571rem; } }
 
 .editor_note {
   background-color: #EBE59D; }
@@ -1774,6 +1786,11 @@ body {
     margin-bottom: .5em; }
     .editor_note p:last-child {
       margin-bottom: 0; }
+
+.signature {
+  font-family: 'Nothing You Could Do', cursive;
+  font-size: 18px;
+  font-size: 1.28571rem; }
 
 div.editor_note {
   margin: auto;

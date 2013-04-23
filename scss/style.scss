@@ -3,7 +3,7 @@ Theme Name: Actor Notes
 Author: Happy Collision
 Author URI: http://happycollision.com
 Description: Child theme for ActorNotes.com
-Version: 1.0
+Version: 0.2
 Template: twentytwelve
 
 */
@@ -178,11 +178,16 @@ body{
 			font-size: 24px;
 			font-size: 24rem / $rembase;
 			text-align: center;
+		
+			@include breakpoint(just-small){
+				font-size: 18px;
+				font-size: 18rem / $rembase;
+			}
 		}
 	}
 	
-	nav{
-		.nav-menu{
+	nav.main-navigation{
+		div{
 			
 			@include breakpoint(medium){
 				@include ribbon;
@@ -214,13 +219,23 @@ body{
 
 .entry-header .entry-title{
 	font-family: 'Nothing You Could Do', cursive;
-		font-size: 32px;
-		font-size: 32rem / $rembase;
+	font-size: 32px;
+	font-size: 32rem / $rembase;
+	
+	@include breakpoint(just-small){
+		font-size: 24px;
+		font-size: 24rem / $rembase;
+	}
 }
 
 .page .entry-header .entry-title{
-		font-size: 52px;
-		font-size: 52rem / $rembase;
+	font-size: 52px;
+	font-size: 52rem / $rembase;
+	
+	@include breakpoint(just-small){
+		font-size: 32px;
+		font-size: 32rem / $rembase;
+	}
 }
 
 .editor_note {
@@ -234,6 +249,11 @@ body{
 		}
 	}
 
+}
+.signature{
+	font-family: 'Nothing You Could Do', cursive;
+	font-size: 18px;
+	font-size: 18rem / $rembase;
 }
 
 div.editor_note {
