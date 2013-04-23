@@ -6,6 +6,16 @@ function add_google_fonts(){
 	echo "<link href='http://fonts.googleapis.com/css?family=Nothing+You+Could+Do' rel='stylesheet' type='text/css'>";
 }
 
+add_action('wp_head','add_favicons');
+function add_favicons(){
+	echo '<link rel="shortcut icon" href="'.get_stylesheet_directory_uri() . '/favicon.ico'.'">';
+	
+	echo '<link rel="apple-touch-icon" href="'.get_stylesheet_directory_uri() . '/apple-touch-icon-precomposed.png'.'" />';
+	echo '<link rel="apple-touch-icon" sizes="72x72" href="'.get_stylesheet_directory_uri() . '/apple-touch-icon-72x72-precomposed.png'.'" />';
+	echo '<link rel="apple-touch-icon" sizes="114x114" href="'.get_stylesheet_directory_uri() . '/apple-touch-icon-114x114-precomposed.png'.'" />';
+	//echo '<link rel="apple-touch-icon" sizes="144x144" href="'.get_stylesheet_directory_uri() . '/apple-touch-icon-precomposed.png'.'" />';
+}
+
 // Add class of 'project-blog' to body for styleing the blog page
 add_filter('body_class', 'projet_blog_body_class');
 function projet_blog_body_class($classes) {
