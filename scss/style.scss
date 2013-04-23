@@ -9,6 +9,49 @@ Template: twentytwelve
 */
 @import 'twentytwelvecopy';
 
+@mixin twentytwelve_button{
+	padding: 6px 10px;
+	padding: 0.428571429rem 0.714285714rem;
+	font-size: 11px;
+	font-size: 0.785714286rem;
+	line-height: 1.428571429;
+	font-weight: normal;
+	color: #7c7c7c;
+	background-color: #e6e6e6;
+	background-repeat: repeat-x;
+	background-image: -moz-linear-gradient(top, #f4f4f4, #e6e6e6);
+	background-image: -ms-linear-gradient(top, #f4f4f4, #e6e6e6);
+	background-image: -webkit-linear-gradient(top, #f4f4f4, #e6e6e6);
+	background-image: -o-linear-gradient(top, #f4f4f4, #e6e6e6);
+	background-image: linear-gradient(top, #f4f4f4, #e6e6e6);
+	border: 1px solid #d2d2d2;
+	border-radius: 3px;
+	box-shadow: 0 1px 2px rgba(64, 64, 64, 0.1);
+
+	&:hover{
+		color: #5e5e5e;
+		background-color: #ebebeb;
+		background-repeat: repeat-x;
+		background-image: -moz-linear-gradient(top, #f9f9f9, #ebebeb);
+		background-image: -ms-linear-gradient(top, #f9f9f9, #ebebeb);
+		background-image: -webkit-linear-gradient(top, #f9f9f9, #ebebeb);
+		background-image: -o-linear-gradient(top, #f9f9f9, #ebebeb);
+		background-image: linear-gradient(top, #f9f9f9, #ebebeb);
+	}
+	&:active{
+		color: #757575;
+		background-color: #e1e1e1;
+		background-repeat: repeat-x;
+		background-image: -moz-linear-gradient(top, #ebebeb, #e1e1e1);
+		background-image: -ms-linear-gradient(top, #ebebeb, #e1e1e1);
+		background-image: -webkit-linear-gradient(top, #ebebeb, #e1e1e1);
+		background-image: -o-linear-gradient(top, #ebebeb, #e1e1e1);
+		background-image: linear-gradient(top, #ebebeb, #e1e1e1);
+		box-shadow: inset 0 0 8px 2px #c6c6c6, 0 1px 0 0 #f4f4f4;
+		border: none;
+	}
+}
+
 @mixin breakpoint($point) {
 	@if $point == large {
 		@media screen
@@ -20,7 +63,19 @@ Template: twentytwelve
 			and (min-width: 600px) 
 			{ @content; }
 	}
+	@else if $point == just-small {
+		@media screen
+			and (max-width: 599px) 
+			{ @content; }
+	}
 }
+
+@mixin border-radius($radius: 5px){
+	border-radius: $radius;
+	-moz-border-radius: $radius;
+	-webkit-border-radius: $radius;
+}
+
 
 @mixin no-hyphens {
    word-wrap: normal;
@@ -31,6 +86,26 @@ Template: twentytwelve
 
 @mixin box-shadow($x,$y,$blur,$color){
 	-webkit-box-shadow: $x $y $blur $color;
+	-moz-box-shadow: $x $y $blur $color;
+	-o-box-shadow: $x $y $blur $color;
+	-ms-box-shadow: $x $y $blur $color;
+	box-shadow: $x $y $blur $color;
+}
+
+@mixin box-sizing {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing:border-box;
+}
+
+@mixin ribbon{
+	border: 1px solid #b33 {
+		left:none;
+		right:none;
+		bottom-color: #700;
+	}
+	background:#911 url('./i/canvas_texture.png') repeat center top;
+	@include box-shadow(0,1px,1px,#500)
 }
 
 $rembase:     14;
@@ -52,55 +127,65 @@ body{
 	}
 }
 
-.site-header{
+@mixin cardboard{
 	background-color: transparent;
 	background-image: url('./i/bg_texture.png');
 	background-repeat: repeat;
 	background-position: center top;
 	@include box-shadow(0, 2px, 2px, #5f4125);
-	
-	h1{
-		font-size: 52px;
-		font-size: 52rem / $rembase;
-		line-height: 1em;
-		font-family: 'Nothing You Could Do', cursive;
-		width: 100%;
-		text-align: center;
-		margin-top: -0.1em;
-		
-		a, a:hover{
-			display: block;
-			width: 100%;
-			color: #000;
-			color: rgba(0,0,0,0.4);
-			text-shadow: 0 0 2px #000;
-			text-shadow: 0 0 2px rgba(0,0,0,0.4);
-			
-			&:before, &:after{
-				content:'*';
-			}
-		}
+}
+
+.site-header{
+	@include breakpoint(medium){
+		@include cardboard;
 	}
 	
-	h2{
-		font-family: 'Nothing You Could Do', cursive;
-		color:#000;
-		font-size: 24px;
-		font-size: 24rem / $rembase;
-		text-align: center;
+	hgroup{
+		@include breakpoint(just-small){
+			@include cardboard;
+			margin-top:-24px;
+			margin-top:-24rem / $rembase;
+			padding-top:24px;
+			padding-top:24rem / $rembase;
+		}
+		
+		h1{
+			font-size: 52px;
+			font-size: 52rem / $rembase;
+			line-height: 1em;
+			font-family: 'Nothing You Could Do', cursive;
+			width: 100%;
+			text-align: center;
+			margin-top: -0.1em;
+			
+			a, a:hover{
+				display: block;
+				width: 100%;
+				color: #000;
+				color: rgba(0,0,0,0.4);
+				text-shadow: 0 0 2px #000;
+				text-shadow: 0 0 2px rgba(0,0,0,0.4);
+				
+				&:before, &:after{
+					content:'*';
+				}
+			}
+		}
+		
+		h2{
+			font-family: 'Nothing You Could Do', cursive;
+			color:#000;
+			font-size: 24px;
+			font-size: 24rem / $rembase;
+			text-align: center;
+		}
 	}
 	
 	nav{
 		.nav-menu{
 			
 			@include breakpoint(medium){
-				border: 1px solid #b33 {
-					left:none;
-					right:none;
-					bottom-color: #700;
-				}
-				background:#911 url('./i/canvas_texture.png') repeat center top;
-				@include box-shadow(0,1px,1px,#500)
+				@include ribbon;
 			}
 			
 			ul{
@@ -127,9 +212,45 @@ body{
 	margin: auto;
 }
 
-.entry-title{
-		font-family: 'Nothing You Could Do', cursive;
+.entry-header .entry-title{
+	font-family: 'Nothing You Could Do', cursive;
+		font-size: 32px;
+		font-size: 32rem / $rembase;
 }
+
+.page .entry-header .entry-title{
+		font-size: 52px;
+		font-size: 52rem / $rembase;
+}
+
+.editor_note {
+	background-color: #EBE59D;
+
+	p {
+		margin-bottom: .5em;
+	
+		&:last-child{
+			margin-bottom: 0;
+		}
+	}
+
+}
+
+div.editor_note {
+	margin:auto;
+	margin-bottom: 2em;
+	padding: 2em;
+	@include box-shadow(3px, 5px, 6px, #807C4E);
+	@include box-shadow(3px, 5px, 4px, rgba(128, 124, 8, 0.5));
+	width: 70%;
+	
+-webkit-transform: matrix(1,0,0.038,1,0,0);
+   -moz-transform: matrix(1,0,0.038,1,0px,0px);
+    -ms-transform: matrix(1,0,0.038,1,0,0);
+     -o-transform: matrix(1,0,0.038,1,0,0);
+        transform: matrix(1,0,0.038,1,0,0);
+}
+
 
 // Always display author names. Even when it's just one.
 .single-author .entry-meta .by-author {
@@ -140,3 +261,54 @@ body{
 .site-content article{
 	@include no-hyphens;
 }
+
+.main-navigation{
+	.menu-toggle{
+		width:50%;
+	}
+	
+	ul.nav-menu.toggled-on{ 
+		width: 50%;
+		li{
+			margin-top:6px;
+			a{
+				@include twentytwelve_button;
+				@include box-sizing;
+				display: block;
+				width:100%;
+/*
+				height: 48px;
+				padding:12px;
+*/
+			}
+		}
+	}
+}
+
+/*
+.menu-toggle:active, .main-navigation .menu-toggle:active:hover, .main-navigation ul.nav-menu.toggled-on li.toggled-on:active:hover, .main-navigation .menu-toggle.toggled-on:active, .main-navigation ul.nav-menu.toggled-on li.toggled-on:active, .main-navigation .menu-toggle.toggled-on:active:hover,
+.menu-toggle.toggled-on,
+.main-navigation .toggled-on.menu-toggle:hover,
+.main-navigation ul.nav-menu.toggled-on li.toggled-on:hover,
+.main-navigation .toggled-on.menu-toggle,
+.main-navigation ul.nav-menu.toggled-on li.toggled-on,
+.main-navigation .toggled-on.menu-toggle:active,
+.main-navigation ul.nav-menu.toggled-on li.toggled-on:active,
+.main-navigation ul.nav-menu.toggled-on li.toggled-on:active:hover{
+		@include box-sizing;
+		width:100%;
+		@include border-radius(0);
+		@include ribbon;
+		color:#fff;
+		
+		padding:0;
+		
+		a{
+			padding: 6px 10px;
+		}
+
+}
+*/
+
+
+
