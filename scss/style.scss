@@ -76,6 +76,13 @@ Template: twentytwelve
 	-webkit-border-radius: $radius;
 }
 
+@mixin transform($args){
+  -webkit-transform: $args;  /* Chrome, Safari 3.1+ */
+     -moz-transform: $args;  /* Firefox 3.5-15 */
+      -ms-transform: $args;  /* IE 9 */
+       -o-transform: $args;  /* Opera 10.50-12.00 */
+          transform: $args;  /* Firefox 16+, IE 10+, Opera 12.10+ */
+}
 
 @mixin no-hyphens {
    word-wrap: normal;
@@ -280,6 +287,37 @@ div.editor_note {
 // Remove hyphens in articles. Ugh.
 .site-content article{
 	@include no-hyphens;
+}
+
+article.format-quote div.entry-content{
+	position: relative;
+	z-index: 1;
+	background-color: #d2e0f9;
+	padding-top: 6px;
+	padding-left: 48px;
+	padding-left: 48rem / $rembase;
+	&:before{
+		content:"";
+		background: inherit;
+		width:9999px;
+		position: absolute;
+		top:0;
+		bottom:0;
+		right:0;
+		z-index: -1;
+		@include box-shadow(1px, 1px, 2px, #444);
+	}
+	
+	&:nth-of-type(2n+1){
+		@include transform(rotate(1.5deg));
+	}
+	&:nth-of-type(2n){
+		@include transform(rotate(-1.0deg));
+	}
+	&:nth-of-type(2n11){
+		@include transform(rotate(1.0deg));
+	}
+	
 }
 
 .main-navigation{
