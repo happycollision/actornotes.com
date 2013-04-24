@@ -84,6 +84,15 @@ Template: twentytwelve
           transform: $args;  /* Firefox 16+, IE 10+, Opera 12.10+ */
 }
 
+@mixin transform-matrix($matA,$matB,$matC,$matD,$matE,$matF){
+-webkit-transform: matrix($matA,$matB,$matC,$matD,$matE,$matF);
+   -moz-transform: matrix($matA,$matB,$matC,$matD,#{$matE}px,#{$matF}px);
+    -ms-transform: matrix($matA,$matB,$matC,$matD,$matE,$matF);
+     -o-transform: matrix($matA,$matB,$matC,$matD,$matE,$matF);
+        transform: matrix($matA,$matB,$matC,$matD,$matE,$matF);
+	
+}
+
 @mixin no-hyphens {
    word-wrap: normal;
   -webkit-hyphens: none;
@@ -270,12 +279,12 @@ div.editor_note {
 	@include box-shadow(3px, 5px, 6px, #807C4E);
 	@include box-shadow(3px, 5px, 4px, rgba(128, 124, 8, 0.5));
 	width: 70%;
+	@include transform-matrix(1,0,0.038,1,0,0);
 	
--webkit-transform: matrix(1,0,0.038,1,0,0);
-   -moz-transform: matrix(1,0,0.038,1,0px,0px);
-    -ms-transform: matrix(1,0,0.038,1,0,0);
-     -o-transform: matrix(1,0,0.038,1,0,0);
-        transform: matrix(1,0,0.038,1,0,0);
+	@include breakpoint(just-small){
+		@include transform-matrix(1,0,0,1,0,0);
+	}
+	
 }
 
 
@@ -289,36 +298,41 @@ div.editor_note {
 	@include no-hyphens;
 }
 
-article.format-quote div.entry-content{
-	position: relative;
-	z-index: 1;
-	background-color: #d2e0f9;
-	padding-top: 6px;
-	padding-left: 48px;
-	padding-left: 48rem / $rembase;
-	&:before{
-		content:"";
-		background: inherit;
-		width:9999px;
-		position: absolute;
-		top:0;
-		bottom:0;
-		right:0;
-		z-index: -1;
-		@include box-shadow(1px, 1px, 2px, #444);
+article.format-quote {
+	div.entry-content{
+		position: relative;
+		z-index: 1;
+		background-color: #d2e0f9;
+		padding-top: 6px;
+		padding-left: 48px;
+		padding-left: 48rem / $rembase;
+		&:before{
+			content:"";
+			background: inherit;
+			width:9999px;
+			position: absolute;
+			top:0;
+			bottom:0;
+			right:0;
+			z-index: -1;
+			@include box-shadow(1px, 1px, 2px, #444);
+		}	
 	}
 	
-	&:nth-of-type(2n+1){
-		@include transform(rotate(1.5deg));
+	&:nth-of-type(4n) div.entry-content{
+		@include transform(rotate(3.5deg));
 	}
-	&:nth-of-type(2n){
-		@include transform(rotate(-1.0deg));
+	&:nth-of-type(4n-1) div.entry-content{
+		@include transform(rotate(-2.0deg));
 	}
-	&:nth-of-type(2n11){
-		@include transform(rotate(1.0deg));
+	&:nth-of-type(4n-2) div.entry-content{
+		@include transform(rotate(3.0deg));
 	}
-	
+	&:nth-of-type(4n-3) div.entry-content{
+		@include transform(rotate(-3.0deg));
+	}
 }
+
 
 .main-navigation{
 	.menu-toggle{
