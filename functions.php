@@ -16,6 +16,17 @@ function add_favicons(){
 	//echo '<link rel="apple-touch-icon" sizes="144x144" href="'.get_stylesheet_directory_uri() . '/apple-touch-icon-precomposed.png'.'" />' . "\n";
 }
 
+add_filter('the_content', 'display_editor_notes');
+function display_editor_notes($content){
+	$note = get_post_meta(get_the_ID(),'editor_note',true);
+	if($note === '') return $content;
+	
+	$note = wptexturize($note);//make typograpy pretty
+	$note = wpautop($note);//add <p> and <br> where necessary
+	
+	return "<div class='editor-note'>{$note}</div>{$content}";
+}
+
 function hc_single_id(){
 	global $wp_query;
 	$post_id = $wp_query->post->ID;
