@@ -3,17 +3,19 @@ locate_template('project_blog_post-type.php', true);
 
 add_action('wp_head','add_google_fonts');
 function add_google_fonts(){
-	echo "<link href='http://fonts.googleapis.com/css?family=Nothing+You+Could+Do' rel='stylesheet' type='text/css'>" . "\n";
+	echo "<link href='http://fonts.googleapis.com/css?family=Nothing+You+Could+Do' rel='stylesheet' type='text/css'>\n";
 }
 
 add_action('wp_head','add_favicons');
 function add_favicons(){
-	echo '<link rel="shortcut icon" href="'.get_stylesheet_directory_uri() . '/favicon.ico'.'">' . "\n";
+	$stylesheet_directory = get_stylesheet_directory_uri();
 	
-	echo '<link rel="apple-touch-icon" href="'.get_stylesheet_directory_uri() . '/apple-touch-icon-precomposed.png'.'" />' . "\n";
-	echo '<link rel="apple-touch-icon" sizes="72x72" href="'.get_stylesheet_directory_uri() . '/apple-touch-icon-72x72-precomposed.png'.'" />' . "\n";
-	echo '<link rel="apple-touch-icon" sizes="114x114" href="'.get_stylesheet_directory_uri() . '/apple-touch-icon-114x114-precomposed.png'.'" />' . "\n";
-	//echo '<link rel="apple-touch-icon" sizes="144x144" href="'.get_stylesheet_directory_uri() . '/apple-touch-icon-precomposed.png'.'" />' . "\n";
+	echo "<link rel='shortcut icon' href='{$stylesheet_directory}/favicon.ico'> \n";
+	
+	echo "<link rel='apple-touch-icon' href='{$stylesheet_directory}/apple-touch-icon-precomposed.png' />\n";
+	echo "<link rel='apple-touch-icon' sizes='72x72' href='{$stylesheet_directory}/apple-touch-icon-72x72-precomposed.png' />\n";
+	echo "<link rel='apple-touch-icon' sizes='114x114' href='{$stylesheet_directory}/apple-touch-icon-114x114-precomposed.png' />\n";
+	//echo "<link rel='apple-touch-icon' sizes='144x144' href='{$stylesheet_directory}/apple-touch-icon-precomposed.png' />\n";
 }
 
 add_filter('the_content', 'display_editor_notes');
@@ -35,15 +37,17 @@ function hc_single_id(){
 
 add_action('wp_head','open_graph_stuff');
 function open_graph_stuff(){
-	echo '<meta property="og:image" content="'.get_stylesheet_directory_uri() . '/i/actor-notes-image.jpg'.'" />' . "\n";
-	echo '<meta property="og:image" content="'.get_stylesheet_directory_uri() . '/i/actor-notes-image2.jpg'.'" />' . "\n";
+	$stylesheet_directory = get_stylesheet_directory_uri();
+	echo "<meta property='og:image' content='{$stylesheet_directory}/i/actor-notes-image.jpg' />\n";
+	echo "<meta property='og:image' content='{$stylesheet_directory}/i/actor-notes-image2.jpg' />\n";
 }
 
 add_action('wp_head','hc_meta_info');
 function hc_meta_info(){
-	echo '<meta name="Collaborative acting thoughts. Read journal entries from other actors and contribute your own. Let\'s all have an epiphany together!" />' . "\n";
-	echo '<link rel="image_src" href="'.get_stylesheet_directory_uri() . '/i/actor-notes-image.jpg'.'" />' . "\n";
-	echo '<link rel="image_src" href="'.get_stylesheet_directory_uri() . '/i/actor-notes-image2.jpg'.'" />' . "\n";
+	$stylesheet_directory = get_stylesheet_directory_uri();
+	echo "<meta name='Collaborative acting thoughts. Read journal entries from other actors and contribute your own. Let&apos;s all have an epiphany together!' />\n";
+	echo "<link rel='image_src' href='{$stylesheet_directory}i/actor-notes-image.jpg'.'' />\n";
+	echo "<link rel='image_src' href='{$stylesheet_directory}i/actor-notes-image2.jpg'.'' />\n";
 }
 
 
