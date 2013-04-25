@@ -120,7 +120,12 @@ Template: twentytwelve
 		right:none;
 		bottom-color: #700;
 	}
-	background:#911 url('./i/canvas_texture.png') repeat center top;
+	background:{
+		color:#911;
+		image:url('./i/canvas_texture.png');
+		repeat:repeat;
+		position: center top;
+	}
 	@include box-shadow(0,1px,1px,#500)
 }
 
@@ -144,7 +149,7 @@ body{
 }
 
 @mixin cardboard{
-	background-color: transparent;
+	background-color: #8C6A32;
 	background-image: url('./i/bg_texture.png');
 	background-repeat: repeat;
 	background-position: center top;

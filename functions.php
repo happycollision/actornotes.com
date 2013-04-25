@@ -6,6 +6,25 @@ function add_google_fonts(){
 	echo "<link href='http://fonts.googleapis.com/css?family=Nothing+You+Could+Do' rel='stylesheet' type='text/css'>\n";
 }
 
+add_action('wp_head','ie_sux');
+function ie_sux(){
+	echo '<!--[if lt IE 9]><style>
+		header a, header a:visited, header a:link, header a:hover{
+		color:#000;
+		}
+		header a:hover{
+		text-decoration:underline;
+		}
+		header nav a, header nav a:visited, header nav a:link, header nav a:hover{
+		color:#000 !important;
+		}
+		header nav a:hover{
+		text-decoration:underline;
+		}
+		</style>
+		<![endif]-->';
+}
+
 add_action('wp_head','add_favicons');
 function add_favicons(){
 	$stylesheet_directory = get_stylesheet_directory_uri();
