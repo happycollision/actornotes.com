@@ -1,5 +1,5 @@
 <?php
-function codex_custom_init() {
+function hc_custom_type_blog_init() {
   $labels = array(
     'name' => 'Blog',
     'singular_name' => 'Blog Post',
@@ -24,7 +24,7 @@ function codex_custom_init() {
     'show_in_menu' => true, 
     'query_var' => true,
     'rewrite' => array( 'slug' => 'blog' ),
-    'capability_type' => 'post',
+    'capability_type' => 'page',
     'has_archive' => true, 
     'hierarchical' => false,
     'menu_position' => null,
@@ -33,4 +33,5 @@ function codex_custom_init() {
 
   register_post_type( 'blog', $args );
 }
-add_action( 'init', 'codex_custom_init' );
+add_action( 'init', 'hc_custom_type_blog_init' );
+
