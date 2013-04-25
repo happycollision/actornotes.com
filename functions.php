@@ -95,3 +95,54 @@ wp_enqueue_script(
 	array( 'fittext' ),
 	true
 );
+
+
+/*
+Plugin Name: Draft Notification
+Plugin URI: http://www.dagondesign.com/articles/draft-notification-plugin-for-wordpress/
+Description: Sends an email to the site admin when a draft is saved.
+Author: Dagon Design
+Version: 1.21
+Author URI: http://www.dagondesign.com
+
+modified as suggested at http://wordpress.org/support/topic/pending-review-email-alert?replies=9#post-834558
+*/
+
+function dddn_process($id) {
+
+	global $wpdb;
+
+	$tp = $wpdb->prefix;
+
+	$result = $wpdb->get_row("
+		SELECT post_status, post_title, user_login, user_nicename, display_name
+		FROM {$tp}posts, {$tp}users
+		WHERE {$tp}posts.post_author = {$tp}users.ID
+		AND {$tp}posts.ID = '$id'
+	");
+
+	if ($result->post_status == "pending") {
+
+		$message = "";
+		$message .= "A draft was updated on '" . get_bloginfo('name') . "'\n\n";
+		$message .= "Title: " . $result->post_title . "\n\n";
+
+			// *** Choose one of the following options to show the author's name
+
+		$message .= "Author: " . $result->display_name . "\n\n";
+		// $message .= "Author: " . $result->user_nicename . "\n\n";
+		// $message .= "Author: " . $result->user_login . "\n\n";
+
+		$message .= "Link: " . get_permalink($id);
+
+		$subject = "Draft submitted for publishing on '" . get_bloginfo('name') . "'";
+
+		$recipient = get_bloginfo('admin_email');
+
+		mail($recipient, $subject, $message);
+
+	}
+
+}
+
+add_action('save_post', 'dddn_process');
